@@ -1,18 +1,20 @@
 package com.practice.controller;
 
-import com.practice.model.Student;
-import com.practice.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.practice.model.Student;
+import com.practice.service.StudentService;
 
 /**
  * Created by ravikiran_gorthi on 5/18/17.
@@ -113,6 +115,13 @@ public class StudentController {
         model.addAttribute("studentsList", studentService.getAllStudents());
 
         return model;
+    }
+    
+    @ExceptionHandler(Exception.class)
+    public ModelAndView globalExceptionHandler(Exception e) {
+        ModelAndView modelAndView = new ModelAndView("error");
+        modelAndView.addObject("message", e.getMessage());
+        return modelAndView;
     }
 
 }
