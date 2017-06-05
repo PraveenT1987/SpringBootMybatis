@@ -22,7 +22,7 @@
             timeout="10000"
             fetchSize="256"
             statementType="PREPARED">
-        SELECT * FROM STUDENT;
+        SELECT * FROM STUDENT ORDER BY STUDENT_ID;
     </select>
 
     <!-- Select By Id Operation -->
@@ -64,10 +64,6 @@
         (STUDENT_NAME, BRANCH, PERCENTAGE, MOBILE_NO, EMAIL )
         VALUES
         (#{name}, #{branch}, #{percentage}, #{mobileNo}, #{emailId});
-
-        <selectKey keyProperty="studentId" resultType="int" order="AFTER">
-            select last_insert_id() as studentId
-        </selectKey>
 
     </insert>
 
