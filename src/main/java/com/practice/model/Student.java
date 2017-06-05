@@ -1,5 +1,8 @@
 package com.practice.model;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 public class Student implements Serializable {
@@ -8,22 +11,22 @@ public class Student implements Serializable {
 
     private int studentId;
 
-    //@NotNull(message = "Student name cannot be Empty")
+    @NotNull(message = "Student name cannot be Empty")
     private String name;
 
-    //@NotNull(message = "Student branch cannot be Empty")
+    @NotNull(message = "Student branch cannot be Empty")
     private String branch;
 
-    //@Pattern(regexp="\\d{3}", message = "Student percentage should contain 3 digits only")
-    //@NotNull(message = "Student percentage cannot be Null")
+    @Pattern(regexp="\\d{3}", message = "Student percentage should contain 3 digits only")
+    @NotNull(message = "Student percentage cannot be Null")
     private int percentage;
 
-    //@Pattern(regexp="\\d+", message = "Student Phone number should contain 10 digits only")
-    //@Size(min = 10, max = 10)
+    @Pattern(regexp="\\d+", message = "Student Phone number should contain 10 digits only")
+    @Size(min = 10, max = 10, message = "Student Phone number should contain atleast 10 digits")
     private String mobileNo;
 
-    //@Pattern(regexp = "^([a-zA-Z0-9\\-\\.\\_]+)'+'(\\@)([a-zA-Z0-9\\-\\.]+)'+'(\\.)([a-zA-Z]{2,4})$",
-    //       message = "Invalid email address")
+    @Pattern(regexp = "^([a-zA-Z0-9\\-\\.\\_]+)'+'(\\@)([a-zA-Z0-9\\-\\.]+)'+'(\\.)([a-zA-Z]{2,4})$",
+           message = "Invalid email address")
     private String emailId;
 
     //Constructor with No-args
