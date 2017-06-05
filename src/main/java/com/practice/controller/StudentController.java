@@ -76,7 +76,7 @@ public class StudentController {
         } else {
             if (studentService.saveStudent(student) < 1) {
                 model.addAttribute("mybatisMessage", "Invalid Student Details !");
-                model.addAttribute("errors", result);
+                model.addAttribute("errors", result.getAllErrors());
                 return "students";
             } else {
                 model.addAttribute("mybatisMessage", "Student saved Successfully !");
@@ -120,7 +120,7 @@ public class StudentController {
     @ExceptionHandler(Exception.class)
     public ModelAndView globalExceptionHandler(Exception e) {
         ModelAndView modelAndView = new ModelAndView("error");
-        modelAndView.addObject("message", e.getMessage());
+        modelAndView.addObject("exception", e.getMessage());
         return modelAndView;
     }
 
